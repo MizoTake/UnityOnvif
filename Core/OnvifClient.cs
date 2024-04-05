@@ -1,6 +1,7 @@
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using System.Text;
 using System.Threading.Tasks;
 using Onvif.Security;
 
@@ -111,7 +112,8 @@ namespace Onvif.Core
             var binding = new CustomBinding();
             var textBindingElement = new TextMessageEncodingBindingElement
             {
-                MessageVersion = MessageVersion.CreateVersion(EnvelopeVersion.Soap12, AddressingVersion.None)
+                MessageVersion = MessageVersion.CreateVersion(EnvelopeVersion.Soap12, AddressingVersion.None),
+                WriteEncoding = new UTF8Encoding(false)
             };
             var httpBindingElement = new HttpTransportBindingElement
             {
